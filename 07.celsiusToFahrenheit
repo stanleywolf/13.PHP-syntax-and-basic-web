@@ -1,0 +1,36 @@
+<html>
+<?php
+$magAfterFahrenheit="";
+if(isset($_GET['fah'])){
+    $fah = floatval($_GET['fah']);
+    $cel = fahrenheitToCelsius($fah);
+    $magAfterFahrenheit = "$fah &deg;F = $cel &deg;C";
+}
+$magAfterCelsius="";
+if(isset($_GET['cel'])){
+    $cel = floatval($_GET['cel']);
+    $fah = celsiusToFahrenheit($cel);
+    $magAfterCelsius = "$cel &deg;C = $fah &deg;F";
+}
+function celsiusToFahrenheit(float $celsius) : float
+{
+    return $celsius * 1.8 + 32;
+}
+function fahrenheitToCelsius(float $fahrenheit) :float
+{
+    return ($fahrenheit - 32) / 1.8;
+}
+?>
+<form>
+    Celsius:<input type="text" name="cel"/>
+    <input type="submit" value="Convert"/>
+    <?= $magAfterCelsius ?>
+</form>
+<form>
+    Fahrenheit:<input type="text" name="fah"/>
+    <input type="submit" value="Convert"/>
+    <?= $magAfterFahrenheit ?>
+</form>
+
+
+</html>
